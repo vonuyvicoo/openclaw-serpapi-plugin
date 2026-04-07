@@ -11,7 +11,7 @@ export class YelpService {
             params: {
                 engine: "yelp",
                 find_loc: params.find_loc,
-                find_desc: params.find_loc,
+                find_desc: params.find_desc,
                 start: params.start
             }
         });
