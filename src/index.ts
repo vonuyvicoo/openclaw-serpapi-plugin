@@ -1,6 +1,11 @@
-import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
+import type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-entry";
 import { YelpSearchSchema, YelpSearchDto, YelpSearchReviewsSchema, YelpSearchReviewsDto } from "./yelp/schemas/yelp.schema";
 import { SerpAPI, SerpAPIClientOptions } from "./classes";
+
+// Inline definePluginEntry to avoid runtime imports from openclaw (version-dependent path resolution)
+function definePluginEntry(opts: { id: string; name: string; description: string; register: (api: OpenClawPluginApi) => void }) {
+    return { ...opts, configSchema: { safeParse: (v: unknown) => ({ success: true, data: v }), jsonSchema: { type: "object", additionalProperties: true } } };
+}
 
 export default definePluginEntry({
     id: "openclaw-serpapi-plugin",
