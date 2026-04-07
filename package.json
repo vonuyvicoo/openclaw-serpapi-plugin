@@ -42,7 +42,8 @@
     "files": [
         "dist",
         "README.md",
-        "openclaw.plugin.json"
+        "openclaw.plugin.json",
+        "skills"
     ],
     "packageManager": "pnpm@10.7.0",
     "devDependencies": {

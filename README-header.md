@@ -1,6 +1,36 @@
 # OpenClaw SerpAPI Plugin
 
-This repo addresses the problem of OpenClaw's poor tool handling.
-This plugin only does the minimal wrappers I need for my use case.
+Adds Yelp search and review tools to OpenClaw via SerpAPI. Minimal wrappers — feel free to contribute more.
 
-Feel free to add more if you wish.
+## Installation
+
+```
+openclaw plugins install openclaw-serpapi-plugin
+```
+
+Requires OpenClaw ≥ 2026.3.24.
+
+## Configuration
+
+After installation, add your SerpAPI key to `~/.openclaw/openclaw.json`:
+
+```json
+{
+  "plugins": {
+    "entries": {
+      "openclaw-serpapi-plugin": {
+        "enabled": true,
+        "config": {
+          "apiKey": "YOUR_SERPAPI_KEY"
+        }
+      }
+    }
+  }
+}
+```
+
+Get your API key from [serpapi.com/manage-api-key](https://serpapi.com/manage-api-key).
+
+## Skill
+
+This plugin ships a skill at `skills/serpapi/SKILL.md` that teaches the agent when and how to use the `search_yelp` and `search_yelp_reviews` tools. OpenClaw loads it automatically when the plugin is active.
