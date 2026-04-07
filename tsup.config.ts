@@ -11,4 +11,5 @@ export default defineConfig({
   splitting: false,
   tsconfig: "tsconfig.json",
   esbuildPlugins: [tsPaths()],
+  external: ["openclaw"],
 });
