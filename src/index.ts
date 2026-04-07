@@ -7,17 +7,22 @@ export default definePluginEntry({
     name: "OpenClaw SerpAPI Plugin",
     description: "Enables OpenClaw to resolve SerpAPI tools and execute tools on a proper manner.",
     register(api) {
-        const pluginConfig = api.pluginConfig;
-        if(!pluginConfig) throw new Error("Plugin configuration should be set in ~/.openclaw/openclaw.json");
-        if(!pluginConfig.apiKey || typeof pluginConfig.apiKey !== 'string') throw new Error("No API key configured.");
-        if(pluginConfig.baseURL && typeof pluginConfig.baseURL !== 'string') throw new Error("Base URL provided but not a string.");
+        // Capture config at init time — api.pluginConfig is not available inside execute() (openclaw#56432)
+        const capturedConfig = (api.pluginConfig && typeof api.pluginConfig === 'object' && api.pluginConfig.apiKey)
+            ? api.pluginConfig
+            : null;
 
-        const config: SerpAPIClientOptions = {
-            apiKey: pluginConfig.apiKey,
-            ...(pluginConfig.baseURL ? { baseURL: pluginConfig.baseURL as string } : undefined)
-        } 
-
-        const serpApi = new SerpAPI(config);
+        const getClient = (): SerpAPI => {
+            if (!capturedConfig?.apiKey || typeof capturedConfig.apiKey !== 'string')
+                throw new Error("SerpAPI plugin is not configured. Set apiKey in ~/.openclaw/openclaw.json under plugins.entries.openclaw-serpapi-plugin.config");
+            if (capturedConfig.baseURL && typeof capturedConfig.baseURL !== 'string')
+                throw new Error("Base URL must be a string.");
+            const config: SerpAPIClientOptions = {
+                apiKey: capturedConfig.apiKey,
+                ...(capturedConfig.baseURL ? { baseURL: capturedConfig.baseURL as string } : undefined)
+            };
+            return new SerpAPI(config);
+        };
 
         api.registerTool({
             name: "search_yelp",
@@ -25,7 +30,7 @@ export default definePluginEntry({
             label: "Search for yelp places",
             parameters: YelpSearchSchema,
             async execute(_id: string, params: YelpSearchDto) {
-                const results = await serpApi.yelp.search(params);
+                const results = await getClient().yelp.search(params);
                 return { 
                     content: [
                         { 
@@ -44,7 +49,7 @@ export default definePluginEntry({
             label: "Search for yelp reviews based on a place ID",
             parameters: YelpSearchReviewsSchema,
             async execute(_id: string, params: YelpSearchReviewsDto) {
-                const results = await serpApi.yelp.searchReviews(params);
+                const results = await getClient().yelp.searchReviews(params);
                 return { 
                     content: [
                         { 
