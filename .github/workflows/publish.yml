@@ -24,7 +24,7 @@ jobs:
 
       - name: Sync version from npm and bump
         run: |
-          LATEST=$(npm view @vonuyvicoo/openclaw-serpapi-plugin version 2>/dev/null) && pnpm version $LATEST --no-git-tag-version || true
+          LATEST=$(npm view openclaw-serpapi-plugin version 2>/dev/null) && pnpm version $LATEST --no-git-tag-version || true
           pnpm version patch --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
