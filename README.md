@@ -5,6 +5,15 @@ This plugin only does the minimal wrappers I need for my use case.
 
 Feel free to add more if you wish.
 
+## Installation
+
+```
+openclaw plugins install openclaw-serpapi-plugin
+```
+
+## Compatibility
+
+Please make sure to install OpenClaw with version ≥2026.3.24
 
 <a name="readmemd"></a>
 
