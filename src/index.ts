@@ -1,6 +1,7 @@
 import type { OpenClawPluginApi } from "openclaw/plugin-sdk/plugin-entry";
 import { YelpSearchSchema, YelpSearchDto, YelpSearchReviewsSchema, YelpSearchReviewsDto } from "./yelp/schemas/yelp.schema";
 import { SerpAPI, SerpAPIClientOptions } from "./classes";
+import { GoogleMapsSearchSchema, GoogleMapsSearchDto, GoogleMapsSearchReviewsDto, GoogleMapsSearchReviewsSchema } from "./google-maps/schemas/google-maps.schema";
 
 // Inline definePluginEntry to avoid runtime imports from openclaw (version-dependent path resolution)
 function definePluginEntry(opts: { id: string; name: string; description: string; register: (api: OpenClawPluginApi) => void }) {
@@ -47,6 +48,26 @@ export default definePluginEntry({
                 };
             },
         });
+
+        api.registerTool({
+            name: "search_google_maps",
+            description: "Search Google Maps for places",
+            label: "Search for Google Maps places",
+            parameters: GoogleMapsSearchSchema,
+            async execute(_id: string, params: GoogleMapsSearchDto) {
+                const results = await getClient().googleMaps.search(params);
+                return { 
+                    content: [
+                        { 
+                            type: "text", 
+                            text: `Got: ${JSON.stringify(results, null, 2)}` ,
+                        }
+                    ],
+                    details: "None"
+                };
+            },
+        });
+
         
         api.registerTool({
             name: "search_yelp_reviews",
@@ -66,6 +87,27 @@ export default definePluginEntry({
                 };
             },
         });
+
+        
+        api.registerTool({
+            name: "search_google_maps_reviews",
+            description: "Search Google maps for reviews based on a place ID",
+            label: "Search for Google maps for reviews based on a place ID",
+            parameters: GoogleMapsSearchReviewsSchema,
+            async execute(_id: string, params: GoogleMapsSearchReviewsDto) {
+                const results = await getClient().googleMaps.searchReviews(params);
+                return { 
+                    content: [
+                        { 
+                            type: "text", 
+                            text: `Got: ${JSON.stringify(results, null, 2)}` ,
+                        }
+                    ],
+                    details: "None"
+                };
+            },
+        });
+
 
     },
 });

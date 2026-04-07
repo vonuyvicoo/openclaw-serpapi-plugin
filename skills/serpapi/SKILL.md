@@ -1,33 +1,42 @@
 ---
 name: serpapi
-description: SerpAPI skill for OpenClaw — use search_yelp and search_yelp_reviews tools to find places and read reviews via SerpAPI.
+description: SerpAPI skill for OpenClaw — use search_yelp, search_yelp_reviews, search_google_maps, and search_google_maps_reviews tools to find places and read reviews via SerpAPI.
 ---
 
 # SerpAPI Skill
 
-This skill is provided by the `openclaw-serpapi-plugin`. It gives you access to Yelp search and review data via SerpAPI.
+This skill is provided by the `openclaw-serpapi-plugin`. It gives you access to Yelp and Google Maps search and review data via SerpAPI.
 
 ## Available Tools
 
 - **`search_yelp`** — Search for businesses and places on Yelp by description and location.
 - **`search_yelp_reviews`** — Fetch reviews for a specific Yelp place using its place ID.
+- **`search_google_maps`** — Search for businesses and places on Google Maps by query.
+- **`search_google_maps_reviews`** — Fetch reviews for a specific Google Maps place using its place ID.
 
 ## When to Use
 
 Use these tools when the user asks to:
 - Find restaurants, businesses, or places in a specific area
 - Look up reviews or ratings for a place
-- Compare options based on Yelp data
+- Compare options based on Yelp or Google Maps data
 
 ## Usage Pattern
 
-1. Use `search_yelp` with a location (`find_loc`) and optional query (`find_desc`) to get a list of places and their Yelp IDs.
-2. Use `search_yelp_reviews` with the `place_id` from step 1 to read reviews for a specific place.
+### Yelp
+1. Use `search_yelp` with `find_loc` (location) and `find_desc` (what to search for) to get a list of places.
+2. Use `search_yelp_reviews` with the `place_id` from step 1 to read reviews.
+
+### Google Maps
+1. Use `search_google_maps` with `q` (search query including location) to get a list of places with their `place_id`.
+2. Use `search_google_maps_reviews` with the `place_id` from step 1 to read reviews.
 
 ## Pagination
 
-- `search_yelp`: results start at `start=0`, next page at `start=20`, then `start=30`, etc.
-- `search_yelp_reviews`: results start at `start=0`, next page at `start=49` (or match `num` param).
+- `search_yelp`: `start=0` → `start=20` → `start=30`, etc.
+- `search_yelp_reviews`: `start=0` → `start=49`, etc.
+- `search_google_maps`: `start=0` → `start=20`, etc.
+- `search_google_maps_reviews`: use `next_page_token` returned in the previous response.
 
 ## Notes
 

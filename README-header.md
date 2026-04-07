@@ -1,6 +1,6 @@
 # OpenClaw SerpAPI Plugin
 
-Adds Yelp search and review tools to OpenClaw via SerpAPI. Minimal wrappers — feel free to contribute more.
+Adds Yelp and Google Maps search and review tools to OpenClaw via SerpAPI. Minimal wrappers — feel free to contribute more.
 
 ## Installation
 
@@ -38,6 +38,4 @@ Make sure you enable it on your agent's tools:
 
 ## Skill
 
-This plugin ships a skill at `skills/serpapi/SKILL.md` that teaches the agent when and how to use the `search_yelp` and `search_yelp_reviews` tools. OpenClaw loads it automatically when the plugin is active.
-
-
+This plugin ships a skill at `skills/serpapi/SKILL.md` that teaches the agent when and how to use the tools. OpenClaw loads it automatically when the plugin is active.
