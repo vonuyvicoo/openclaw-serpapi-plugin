@@ -31,9 +31,16 @@ After installation, add your SerpAPI key to `~/.openclaw/openclaw.json`:
 
 Get your API key from [serpapi.com/manage-api-key](https://serpapi.com/manage-api-key).
 
+Make sure you enable it on your agent's tools:
+<img width="1670" height="197" alt="Image" src="https://github.com/user-attachments/assets/4a60c670-af4d-4386-9c43-6a1cd1edaf9d" />
+
+[http://127.0.0.1:18789/agents](http://127.0.0.1:18789/agents) or a different port.
+
 ## Skill
 
 This plugin ships a skill at `skills/serpapi/SKILL.md` that teaches the agent when and how to use the `search_yelp` and `search_yelp_reviews` tools. OpenClaw loads it automatically when the plugin is active.
+
+
 
 
 <a name="readmemd"></a>
@@ -61,4 +68,4 @@ This plugin ships a skill at `skills/serpapi/SKILL.md` that teaches the agent wh
 
 > **default**: `DefinedPluginEntry`
 
-Defined in: [index.ts:5](https://github.com/vonuyvicoo/openclaw-serpapi-plugin/blob/044c2f3ca0c8ca91bfbd7547589f64f242d7968c/src/index.ts#L5)
+Defined in: [index.ts:5](https://github.com/vonuyvicoo/openclaw-serpapi-plugin/blob/bee0ea4e70834e47b066395af17f166f5f382bb8/src/index.ts#L5)
