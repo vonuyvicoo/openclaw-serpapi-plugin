@@ -1,5 +1,5 @@
 {
-    "name": "@vonuyvicoo/openclaw-serpapi-plugin",
+    "name": "openclaw-serpapi-plugin",
     "version": "1.0.0",
     "description": "OpenClaw SerpAPI Plugin",
     "type": "module",
