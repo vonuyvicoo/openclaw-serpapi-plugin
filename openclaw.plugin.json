@@ -2,6 +2,18 @@
   "id": "openclaw-serpapi-plugin",
   "name": "OpenClaw SerpAPI Plugin",
   "description": "Adds custom tools to OpenClaw with tenant tools",
+  "uiHints": {
+    "apiKey": {
+      "label": "SerpAPI Key",
+      "help": "Your SerpAPI key from https://serpapi.com/manage-api-key",
+      "sensitive": true,
+      "placeholder": "..."
+    },
+    "baseURL": {
+      "label": "Base URL (optional)",
+      "help": "Override the SerpAPI base URL. Leave blank to use the default."
+    }
+  },
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
