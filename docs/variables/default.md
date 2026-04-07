@@ -8,4 +8,4 @@
 
 > **default**: `DefinedPluginEntry`
 
-Defined in: [index.ts:5](https://github.com/vonuyvicoo/openclaw-serpapi-plugin/blob/26b400aa2c848381c6e9c41503753534098927fc/src/index.ts#L5)
+Defined in: [index.ts:5](https://github.com/vonuyvicoo/openclaw-serpapi-plugin/blob/044c2f3ca0c8ca91bfbd7547589f64f242d7968c/src/index.ts#L5)
