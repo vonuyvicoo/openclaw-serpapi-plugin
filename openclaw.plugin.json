@@ -1,0 +1,14 @@
+{
+  "id": "openclaw-serpapi-plugin",
+  "name": "OpenClaw SerpAPI Plugin",
+  "description": "Adds custom tools to OpenClaw with tenant tools",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["apiKey"],
+    "properties": {
+      "apiKey": { "type": "string" },
+      "baseURL": { "type": "string" }
+    }
+  }
+}
